@@ -1,0 +1,109 @@
+CREATE OR REPLACE FUNCTION SquareOfNumber(num IN INT)
+RETURN INT
+AS
+BEGIN
+RETURN num*num;
+END;
+/
+
+DECLARE
+num INT := &num;
+sqr INT;
+BEGIN
+SELECT SquareofNumber(num) INTO sqr FROM dual;
+dbms_output.put_line('Square of the number is '||sqr);
+END;
+/
+
+CREATE OR REPLACE FUNCTION swapNumbers(a IN INT, b IN INT)
+RETURN VARCHAR
+AS
+c INT;
+BEGIN
+c := a;
+a := b;
+b := c;
+RETURN ('A is now : '||a||' B is now : '||b);
+END;
+/
+
+DECLARE
+A INT := &A;
+B INT := &B;
+BEGIN
+dbms_output.put_line('Before Swapping');
+dbms_output.put_line('A = ' || A);
+dbms_output.put_line('B = ' || B);
+dbms_output.put_line('After swapping');
+SELECT swapNumbers(A,B) FROM dual;
+END;
+/
+
+
+CREATE OR REPLACE FUNCTION reverseString(str IN VARCHAR)
+RETURN VARCHAR
+AS
+len INT;
+revString VARCHAR(100);
+BEGIN
+len := LENGTH(str);
+FOR i IN REVERSE 1..len LOOP
+revString := revString || SUBSTR(str, i, 1);
+END LOOP;
+RETURN ('Reverse of the string is '||revString);
+END;
+/
+
+DECLARE 
+string VARCHAR(20);
+result VARCHAR(100);
+BEGIN
+dbms_output.put_line('Enter the string to be reversed');
+string := '&string';
+SELECT reverseString(string) INTO result FROM dual;
+dbms_output.put_line(result);
+END;
+/
+
+CREATE OR REPLACE FUNCTION employeeCount
+RETURN NUMBER
+AS
+empCount INT;
+BEGIN 
+SELECT COUNT(*) INTO empCount FROM Employees;
+RETURN empCount;
+END;
+/
+
+CREATE OR REPLACE FUNCTION sumOfSalary
+RETURN INT
+AS
+sumSalary INT;
+job_title := '&job';
+BEGIN
+SELECT SUM(salary) INTO sumSalary
+FROM Employees
+WHERE job = job_title;
+RETURN sumSalary;
+END;
+/
+
+DECLARE
+    total_salary INT;
+BEGIN
+    total_salary := sumOfSalary;
+    dbms_output.put_line('Total salary for Salesmen : ' || total_salary);
+END;
+/
+
+
+CREATE OR REPLACE TRIGGER updateHours
+AFTER UPDATE
+ON Employees
+FOR EACH ROW
+BEGIN
+UPDATE Project
+SET totalHours = totalHours + :NEW.Hours;
+WHERE projectNumber = :OLD.projectNumber;
+END;
+/

@@ -1,0 +1,81 @@
+Prac 8
+
+1)to update the total hours of project when hours of employee has been updated for that particular project.
+
+CREATE TABLE Project (
+    PNO INT PRIMARY KEY,  
+    PName VARCHAR(100),   
+    THRS INT DEFAULT 0   
+);
+
+CREATE TABLE Employees (
+    EmpID INT PRIMARY KEY,
+    Name VARCHAR(100),
+    HRS INT,      
+    PNO INT,
+    Salary INT,
+    FOREIGN KEY (PNO) REFERENCES Project(PNO)
+);
+
+CREATE OR REPLACE TRIGGER TRG_TIME
+AFTER UPDATE ON Employees
+FOR EACH ROW
+BEGIN
+    UPDATE Project 
+    SET THRS = THRS + :NEW.HRS
+    WHERE PNO = :OLD.PNO;
+END;
+/
+
+2)create a trigger to delete the employees wherever corresponding project is deleted from project table.
+
+CREATE OR REPLACE TRIGGER TRG_DEL
+AFTER DELETE
+ON Project
+FOR EACH ROW
+BEGIN
+DELETE FROM Employees
+WHERE PNO = :OLD.PNO;
+END;
+/
+
+3)create a trigger to insert the name of the employee in UPPERCASE in a table.
+
+CREATE OR REPLACE TRIGGER TRG_UPPER
+BEFORE INSERT
+ON Employees
+FOR EACH ROW 
+BEGIN
+:NEW.NAME := UPPER (:NEW.NAME);
+END;
+/
+
+4)create a trigger to update the salary of employees and to show the old salary, new salary and the difference.
+
+CREATE OR REPLACE TRIGGER TRG_DIFF
+AFTER UPDATE
+ON Employees
+FOR EACH ROW
+BEGIN
+DBMS_OUTPUT.PUT_LINE('OLD SALARY: '||:OLD.Salary||' NEW SALARY: '||:NEW.SALARY||' DIFFERENCE: '||(:NEW.SALARY - :OLD.SALARY));
+END;
+/
+
+5)create a trigger to delete the record of an employee and insert the deleted record in DEL_EMP_REC table. In this case, DEL_EMP_REC is table which will hold the deleted records of an employee.
+
+CREATE TABLE DEL_EMP_REC (
+     ENO INT,
+     NAME VARCHAR(20),
+     HRS INT,
+     Salary INT,
+     PNO INT
+);
+
+CREATE OR REPLACE TRIGGER TRG_DEL1
+AFTER DELETE 
+ON Employees
+FOR EACH ROW
+BEGIN
+INSERT INTO DEL_EMP_REC VALUES(:OLD.EmpID, :OLD.Name, :OLD.HRS, :OLD.Salary, :OLD.PNO);
+END;
+/

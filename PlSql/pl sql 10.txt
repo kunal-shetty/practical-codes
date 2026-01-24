@@ -1,0 +1,147 @@
+PRACTICAL 10
+1)create a package with a function and procedure to find the sum of first 10 natural numbers.
+
+create or replace package natural_nos
+as
+procedure sumno(a in int);
+function sumon (a int) return int;
+end natural_nos;
+/
+
+create or replace package body natural_nos
+as
+procedure sumno (a in int)
+as 
+begin 
+dbms_output.put_line((a*(a+1))/2);
+end;
+
+function sumon (a int) return int
+as
+begin
+return (a*(a+1))/2;
+end;
+end natural_nos;
+/
+
+execute natural_nos.sumno(10);
+
+select natural_nos.sumon(10) from dual;
+
+2)create a package specification and body with a procedure to count total number of employees and a function to display total salary of the employees.
+
+create or replace package pack_demo 
+as
+procedure count_emp; 
+function sum_sal;
+end pack_demo;
+/
+
+create or replace package body pack_demo
+as
+procedure count_emp 
+as 
+ c int;
+begino
+begin
+ select sum(sal) into s from emp; 
+ return s;
+end;
+end pack_demo;
+/
+
+execute pack_demo.count_emp;
+
+execute pack_demo.sum_sal;
+
+3)create a package specification and body with a procedure and a function to display total employees working as CLERK.
+
+CREATE OR REPLACE PACKAGE PACK_DEMO
+AS
+ PROCEDURE TOTEMP;
+ FUNCTION TOTEMP RETURN INT;
+END;
+/
+
+CREATE OR REPLACE PACKAGE BODY PACK_DEMO
+AS
+ PROCEDURE TOTEMP
+ AS 
+  T INT;
+ BEGIN
+  SELECT COUNT(*) INTO T FROM EMP WHERE JOB='CLERK';
+  DBMS_OUTPUT.PUT_LINE(T) :
+ END;
+ FUNCTION TOTEMP RETURN INT
+AS
+  T INT;
+ BEGIN
+  SELECT COUNT(*) INTO T FROM EMP WHERE JOB='CLERK';
+  RETURN T;
+ END;
+END;
+/
+
+EXECUTE PACK_DEMO.TOTEMP;
+
+SELECT PACK_DEMO.TOTEMP FROM DUAL;
+
+4)create a package specification and body with a procedure and a function to display the today's date.
+
+create or replace package pack_demo
+as 
+ procedure tdate;
+function tdate return date;
+end pack_demo;
+/
+
+create or replace package body pack_demo
+as
+ procedure tdate 
+ as 
+ d date; 
+ begin
+  select sysdate into d from dual; 
+  dbms_output.put_line(d);
+ end;
+ function tdate return date 
+ as 
+ d date; 
+ begin
+  select sysdate into d from dual;
+  return d;
+ end;
+end pack_demo;
+/
+
+execute pack_demo.tdate;
+
+select pack_demo.tdate from dual;
+
+5)create a package specification and body with a procedure and a function to display a message.
+
+create or replace package pack_demo
+as
+ procedure msg;
+ function msg return varchar;
+end pack_demo;
+/
+
+create or replace package body pack_demo
+as 
+ procedure msg
+ as
+ begin
+  dbms_output. put_line('I am Learning Packages'); 
+ end;
+ function msg return varchar 
+ as 
+ begin
+  return 'i am a function of a package';
+ end;
+end pack_demo;
+/
+
+execute pack_demo.msg;
+
+select pack_demo.msg() from dual;

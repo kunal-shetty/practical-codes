@@ -1,0 +1,100 @@
+PRACTICAL 3
+1)write a plsql to read the salary of an employee 7900 and display the appropriate message if it lies in the range of 1000 to 5000.
+
+declare
+s int;
+begin
+select sal into s from emp where empno=7900;
+if s>=1000 and s<=5000 then
+ dbms_output.put_line('salary: '||s);
+else
+ dbms_output.put_line('Salary does not lies in range 1000-5000');
+end if;
+end;
+/
+
+2)write a plsql to check wheather the character entered is a vowel or not.
+declare
+a char(1):='&a';
+begin
+case a
+ when 'a' then dbms_ouptput.put_line('This alphabet is a vowel');
+ when 'e' then dbms_ouptput.put_line('This alphabet is a vowel');
+ when 'i' then dbms_ouptput.put_line('This alphabet is a vowel');
+ when 'o' then dbms_ouptput.put_line('This alphabet is a vowel');
+ when 'u' then dbms_ouptput.put_line('This alphabet is a vowel');
+ when 'A' then dbms_ouptput.put_line('This alphabet is a vowel');
+ when 'E' then dbms_ouptput.put_line('This alphabet is a vowel');
+ when 'I' then dbms_ouptput.put_line('This alphabet is a vowel');
+ when 'O' then dbms_ouptput.put_line('This alphabet is a vowel');
+ when 'U' then dbms_ouptput.put_line('This alphabet is a vowel');
+ else dbms_output.put_line('This alphabet is not a vowel');
+end case;
+end;
+/
+
+3)write a PL/SQL block using case statement to perform addition, subtraction, multiplication and division for the individual choices a, s, m, d. The division can only take place if the divisor isgreater than 0 else error message should be printed.
+
+declare
+operator varchar(10) := 'd';
+a int :=10; 
+b int := 40;
+d float;
+begin
+case operator
+when 'a' then dbms_output.put_line(a+b);
+when 's' then dbms_output.put_line(a-b);
+when 'm' then dbms_output.put_line(a*b);
+when 'd' then
+if (b>0) then
+d := a/b;
+dbms_output.put_line(d);
+else
+dbms_output.put_line('Divide by ''0'' error..');
+end if;
+else dbms_output.put_line('Invalid Choice');
+end case
+end;
+/
+
+4)write a plsql block to check whether the entered year is a leap year or not.
+
+declare
+year int;
+begin
+year:=&year;
+if mod(year, 400)=0 then
+ dbms_output.put_line('It is a leap year.');
+elsif mod(year, 100)=0 then
+ dbms_output.put_line('It is not a leap year.');
+elsif mod(year, 4)=0 then
+ dbms_output.put_line('It is a leap year.');
+else
+ dbms_output.put_line('it is not a leap year.');
+end if;
+end;
+/
+
+5)Write a PL/SQL block to get the details of marks (rollno, marks1, marks2, grade) out of 100 for marks1 and marks2 respectively. Display the grade in table marks using if statement as specified below< br/> If stud_pecent > 70 then grade is 'A'. If stud_pecent > 60 and <70 then grade is 'B' else give grade 'C'.
+
+declare
+r int:=&r;
+m1 int:=&mks1;
+m2 int:=&mks2;
+grade char(1);
+stud_percent float;
+begin
+stud_percent:=((m1+m2)/200)*100;
+if stud_percent>70 then
+ grade:='A';
+ dbms_output.put_line('Grade: A');
+elsif stud_percent>60 and stud_percent<70 then
+ grade:= 'B';
+ dbms_output.put_line('Grade: 'B)';
+else
+ grade:= 'C';
+ dbms_output.put_line('Grade: 'C)';
+end if;
+insert into marks values(r, m1, m2, grade);
+end;
+/

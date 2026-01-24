@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Positioning Demo</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .box {
+      padding: 20px;
+      border: 1px solid #ccc;
+    }
+
+    .static-box {
+      background-color: lightgray;
+      position: static;
+    }
+
+    .relative-box {
+      background-color: lightblue;
+      position: relative;
+      top: 20px;
+      left: 20px;
+    }
+
+    .absolute-box {
+      background-color: lightgreen;
+      position: absolute;
+      top: 150px;
+      left: 50px;
+    }
+
+    .fixed-box {
+      background-color: coral;
+      color: white;
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      border-radius: 5px;
+      padding: 10px;
+    }
+
+    .sticky-box {
+      background-color: yellow;
+      position: sticky;
+      top: 0;
+    }
+
+    .container {
+      position: relative;
+      margin: 20px;
+    }
+
+    .content {
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="box static-box">
+      <h2>Static Position</h2>
+      <p>This element uses the default static positioning.</p>
+    </div>
+
+    <div class="box relative-box">
+      <h2>Relative Position</h2>
+      <p>This element is shifted 20px down and 20px to the right from its normal position.</p>
+    </div>
+
+    <div class="box absolute-box">
+      <h2>Absolute Position</h2>
+      <p>This element is positioned 150px from the top and 50px from the left of its nearest positioned ancestor (the container).</p>
+    </div>
+
+    <div class="box sticky-box">
+      <h2>Sticky Position</h2>
+      <p>This element stays at the top of the page when scrolling past it.</p>
+    </div>
+
+    <div class="content">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse viverra mauris eget tortor efficitur, sit amet facilisis libero efficitur. Morbi non justo id magna luctus pretium. Phasellus auctor lectus at nisi ultrices porttitor. Donec dignissim ex in turpis tempus condimentum. Vivamus vitae leo et arcu malesuada dictum a a nunc. Proin lacinia, ligula at egestas gravida, urna magna pulvinar dui, sed tincidunt nisi lectus nec magna.</p>
+
+      <p>Scroll down to see the fixed-positioned element at the bottom right of the page.</p>
+    </div>
+  </div>
+
+  <div class="fixed-box">
+    Fixed Position: I stay here while you scroll!
+  </div>
+</body>
+</html>

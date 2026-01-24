@@ -1,0 +1,13 @@
+<title>Factorial</title>
+<body bgcolor="#B8FF99">
+<script>
+var num = parseInt(prompt("Enter your number"));
+function factorial(n) {
+	if(n === 0 || n === 1)
+	return 1;
+	return n*factorial(n-1);
+}
+var res = factorial(num);
+document.write(`<h1>Factorial of ${num} is ${res}</h1>`);
+</script>
+</body>

@@ -1,0 +1,14 @@
+<title>Fibonacci Series</title>
+<body bgcolor="#99EBFF">
+<script>
+var a = 0,b = 1;
+var num = parseInt(prompt("Enter number of terms to be displayed"));
+document.write("<h1>Fibonacci Series <br></h1>");
+document.write(a + " " + b); 
+for(i=2;i<num;i++){
+	c=a+b;
+	document.write(c+" ");
+	a=b;
+	b=c;
+}
+</script>

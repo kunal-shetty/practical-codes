@@ -1,0 +1,43 @@
+Q1 Write a plsql block to create a sequence and alter a sequence and insert the values in a table
+
+CREATE SEQUENCE s
+MAXVALUE 110
+CYCLE
+CACHE;
+
+ALTER SEQUENCE s
+INCREMENT BY 1
+MAXVALUE 100
+CACHE;
+
+CREATE TABLE SEQUENCE(value INT);
+
+INSERT INTO SEQUENCE VALUES(s.nextval);
+INSERT INTO SEQUENCE VALUES(s.nextval);
+INSERT INTO SEQUENCE VALUES(s.nextval);
+INSERT INTO SEQUENCE VALUES(s.nextval);
+INSERT INTO SEQUENCE VALUES(s.nextval);
+
+SELECT*FROM SEQUENCE;
+
+Q2
+
+CREATE SEQUENCE seq
+START WITH 10
+MAXVALUE 100
+INCREMENT BY 10
+
+CREATE TABLE Products(productno INT, name CHAR(20));
+
+INSERT INTO Products VALUES(seq.nextval,'camera');
+INSERT INTO Products VALUES(seq.nextval,'watch');
+INSERT INTO Products VALUES(seq.nextval,'laptop');
+INSERT INTO Products VALUES(seq.nextval,'speaker');
+INSERT INTO Products VALUES(seq.nextval,'mouse');
+INSERT INTO Products VALUES(seq.nextval,'headphones');
+INSERT INTO Products VALUES(seq.nextval,'keyboard');
+INSERT INTO Products VALUES(seq.nextval,'mobile');
+INSERT INTO Products VALUES(seq.nextval,'ac');
+INSERT INTO Products VALUES(seq.nextval,'tv');
+
+SELECT*FROM Products;

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        form {
+            width: 400px;
+            margin: auto;
+            padding: 20px;
+            border: 3px solid #000;
+	    border-radius : 5px;
+            background: #FA7CDF;
+        }
+        input {
+            width: 90%;
+	    height: 40px;
+	    font-size: 25px;
+	    border-radius: 7.2px;
+            padding: 8px;
+            margin: 10px 0;
+        }
+	button {
+	    width: 375px;
+	    height: 80px;
+	    font-size: 30px;
+            padding: 8px;
+	    border: 2px solid #000;
+	    border-radius : 5px;
+	    background: #7CFA97;
+            margin: 10px;
+	    transition: transform 0.6s ease-in-out, background 0.6s ease-in-out;
+	}
+	button:hover {
+		transform: scale(1.05);
+		background: #50FA7B;
+	}
+        .error { 
+		color: red; 
+		font-size: 25px; 
+	}
+    </style>
+</head>
+<body bgcolor="#FA9CEF">
+    <h1><u>Registration Form</u></h1>
+    <form onsubmit="return validateForm()">
+        <input type="text" id="name" placeholder="Name">
+        <div class="error" id="nameError"></div>
+        <input type="email" id="email" placeholder="Email">
+        <div class="error" id="emailError"></div>
+	<input type="text" id="phone" placeholder="Phone">
+        <div class="error" id="phoneError"></div>
+        <input type="password" id="password" placeholder="Password">
+        <div class="error" id="passwordError"></div>
+        <button type="submit">Submit</button>
+    </form>
+    <script>
+        function validateForm() {
+            let valid = true;
+            document.querySelectorAll(".error").forEach(e => e.innerHTML = "");
+            if (!document.getElementById("name").value.trim()) {
+                document.getElementById("nameError").innerHTML = "Required"; valid = false;
+            }
+            if (!document.getElementById("email").value.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+                document.getElementById("emailError").innerHTML = "Invalid Email"; valid = false;
+            }
+            if (document.getElementById("password").value.length < 8) {
+                document.getElementById("passwordError").innerHTML = "Min 8 characters"; valid = false;
+            }
+            if (!document.getElementById("phone").value.match(/^\d{10}$/)) {
+                document.getElementById("phoneError").innerHTML = "Invalid Phone"; valid = false;
+            }
+              if (valid) {
+                alert("Form submitted successfully");
+            }
+            return valid;
+        }
+    </script>
+</body>
+</html>

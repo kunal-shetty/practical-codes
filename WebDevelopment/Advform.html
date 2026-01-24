@@ -1,0 +1,43 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale="1.0">
+<title>HTML5 Form </title>
+<style>
+label {
+       display : flex;
+}
+</style>
+</head>
+<body bgcolor = "pink">
+<h1>HTML Additional Input Types</h1>
+<form method="POST" action="">
+<label for="dob">Date of birth</label>
+<input type="date" required>
+<br><br>
+<label for="time">Time</label>
+<input type="time" required>
+<br><br>
+<label for="date">Select Date & Time</label>
+<input type="datetime-local">
+<br><br>
+<label for="week">Select Week</label>
+<input type="week">
+<br><br>
+<label for="age">Select Age</label>
+<input type="range" min="1" max="100" step="1">
+<br><br>
+<span id="ageValue">25 </span>Years Old
+<br><br>
+<label for="color">Favorite Color</label>
+<input type="color" value="#ffffff" required>
+<br><br>
+<label for="search">Enter search string</label>
+<input type="search" placeholder="Search"/>
+<br><br>
+<label for="url">Enter your URL</label>
+<input type="url" placeholder="https.www/">
+<br><br>
+<input type="submit" value="Submit">
+</form>
+</body>
+</html>

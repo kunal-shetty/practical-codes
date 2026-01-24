@@ -1,0 +1,74 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale="1.0">
+<title>Simple HTML Form</title>
+<style>
+* {
+   margin-left : 30px;
+}
+label {
+       
+       display : flex;
+}
+.checkbox-container {
+		     display : flex;
+		     white-space : nowrap;
+}
+.radio-container {
+		  display : flex;
+		  align-items : center;
+}
+</style>
+</head>	
+<body bgcolor = "cyan">
+<h1>Contact Us</h1>
+<form method="POST" action="">
+<label for="Name">Full Name</label>
+<input type="text" placeholder="Enter name" required>
+<br>
+<br>
+<label for="email">Email</label>
+<input type="email" placeholder="Enter your email" required>
+<br>
+<br>
+<label for="Contact">Contact</label>
+<input type="tel" min="0" max="9" maxlength="10" placeholder="Enter your number" required>
+<br>
+<br>
+<label for="Feedback">Your Query</label>
+<textarea rows="4" cols="50" placeholder="Enter your query">
+</textarea>
+<br><br>
+<div class="radio-container">
+<label for="gender">Select Gender</label>
+<label for="male">Male</label>
+<input type="radio">
+<label for="female">Female</label>
+<input type="radio">
+<label for="others">Others</label>
+<input type="radio">
+</div>
+<br><br>
+<div class="checkbox-container">
+<input type="checkbox" value="yes" required>
+<label for="agree">I agree to the terms and conditions</label>
+</div>
+<br>
+<label for="country">Country</label>
+<select>
+<option value="UK">United Kingdom</option>
+<option value="JP">Japan</option>
+<option value="IND">India</option>
+<option value="CN">China</option>
+</select>
+<br><br>
+<input type="submit" value="Submit">
+<input type="Reset" value="Reset">
+</form>
+</body>
+</html>
+
+
+
+
+

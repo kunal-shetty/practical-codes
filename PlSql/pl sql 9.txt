@@ -1,0 +1,57 @@
+PRACTICAL 9
+1)write a PL/SQL block to raise an exception when an employee name does not start with 'A'.
+
+declare
+a exception;
+cursor cl is select * from emp;
+begin
+for erec in c1 loop
+dbms_output.put_line(erec.ename);
+if not erec.ename like 'A%' then
+ raise a;
+end if;
+end loop;
+exception
+when a then
+ dbms_output.put_line('Employee name does not start with A.'); 
+end;
+/
+
+2)write a PL/SQL block to raise an exception when divisor is 0.
+
+declare
+a int:=&a;
+b int:=&b; 
+ans int;
+zd exception;
+begin
+if b=0 then
+ raise zd;
+end if;
+ans:=a/b;
+dbms_output.put_line(ans);
+exception
+when zd then 
+dbms_output.put_line('b must be ›0.');
+end;
+/
+
+3)write a PL/SQL block to raise an exception when data record is not found in the table.
+
+declare
+eno int: =9000; 
+j varchar (10);
+c int;
+no_data exception;
+begin
+select count(*) into c from emp where empno=eno;
+if c=0 then
+ raise no_data;
+end if;
+select job into j from emp where empno=eno;
+dbms_output.put_line(j);
+exception
+when no_data then
+dbms_output.put_line( 'No data found.');
+end;
+/

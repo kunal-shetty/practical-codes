@@ -1,0 +1,59 @@
+PRACTICAL 6
+1)create a procedure to display the square of a number.
+
+CREATE PROCEDURE SQU(A IN OUT INT)
+AS
+BEGIN
+DBMS_OUTPUT.PUT_LINE(A*A);
+END;
+/
+
+2)create a procedure to swap two numbers.
+
+create or replace procedure swap(A IN OUT INT, B IN OUT INT)
+as
+c int;
+begin
+c :=A;
+A :=B;
+B :=c;
+dbms_output.put_line('A IS NOW: '||A);
+dbms_output.put_line('B IS NOW: '||B);
+end:
+/
+
+3)create a procedure to display the greatest among two number.
+
+CREATE OR REPLACE PROCEDURE PROC3(A IN OUT INT, B IN OUT INT)
+AS
+BEGIN
+IF(A > B) THEN
+DBMS_OUTPUT.PUT_LINE(A||' IS GREATER THAN B '||B);
+ELSE
+DBMS_OUTPUT.PUT_LINE(B||' IS GREATER THAN '||A);
+END IF;
+END;
+/
+
+4)create a procedure to display today's date.
+
+CREATE PRODUCER TIME_DATE(DATE_TIME IN OUT DATE)
+AS
+BEGIN
+DBMS_OUTPUT.PUT_LINE('TODAYS DATE IS: '||DATE_TIME);
+END;
+/
+
+5)create a producer to find the factorial of a number.
+
+CREATE OR REPLACE PROCEDURE FACT(FAC IN OUT INT, NUM IN OUT INT)
+AS
+BEGIN
+WHILE NUM > 0 LOOP
+FAC := NUM * FAC;
+NUM := NUM - 1;
+END LOOP;
+DBMS_OUTPUT.PUT_LINE(FAC);
+END;
+/
+

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Three.js Monitor Interaction</title>
+  <style>
+    body { margin: 0; overflow: hidden; }
+    canvas { display: block; }
+    #screenUI {
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60%;
+      height: 50%;
+      background: white;
+      border: 3px solid black;
+      display: none; /* hidden until clicked */
+      z-index: 10;
+    }
+  </style>
+</head>
+<body>
+  <!-- Simulated UI inside the monitor -->
+  <iframe id="screenUI" srcdoc="
+    <h2 style='text-align:center;'>Hello inside the Monitor!</h2>
+    <p style='text-align:center;'>You can add buttons, forms, or even embed a website here.</p>
+    <div style='text-align:center;'>
+      <button onclick='alert(&quot;Button Clicked!&quot;)'>Click Me</button>
+    </div>
+  "></iframe>
+
+  <script type="module">
+    import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.153.0/build/three.module.js';
+    import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.153.0/examples/jsm/controls/OrbitControls.js';
+
+    let scene, camera, renderer, controls;
+    let monitor, screenMesh;
+    let screenOn = false;
+
+    init();
+    animate();
+
+    function init() {
+      // Scene
+      scene = new THREE.Scene();
+      scene.background = new THREE.Color(0x111111);
+
+      // Camera
+      camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 100);
+      camera.position.set(0, 2, 5);
+
+      // Renderer
+      renderer = new THREE.WebGLRenderer({ antialias: true });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      document.body.appendChild(renderer.domElement);
+
+      // Lights
+      const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+      scene.add(ambientLight);
+
+      const dirLight = new THREE.DirectionalLight(0xffffff, 1);
+      dirLight.position.set(5, 5, 5);
+      scene.add(dirLight);
+
+      // Monitor body (simple box)
+      const bodyGeometry = new THREE.BoxGeometry(3, 2, 0.2);
+      const bodyMaterial = new THREE.MeshStandardMaterial({ color: 0x222222 });
+      monitor = new THREE.Mesh(bodyGeometry, bodyMaterial);
+      scene.add(monitor);
+
+      // Screen (separate mesh to toggle on/off)
+      const screenGeometry = new THREE.PlaneGeometry(2.6, 1.6);
+      const screenMaterial = new THREE.MeshStandardMaterial({ color: 0x000000, emissive: 0x000000 });
+      screenMesh = new THREE.Mesh(screenGeometry, screenMaterial);
+      screenMesh.position.z = 0.11;
+      monitor.add(screenMesh);
+
+      // OrbitControls
+      controls = new OrbitControls(camera, renderer.domElement);
+      controls.enableDamping = true;
+
+      // Handle click on screen
+      window.addEventListener('click', onClick);
+
+      // Responsive resize
+      window.addEventListener('resize', onWindowResize);
+    }
+
+    function onClick(event) {
+      // Raycaster to detect click on screen
+      const raycaster = new THREE.Raycaster();
+      const mouse = new THREE.Vector2(
+        (event.clientX / window.innerWidth) * 2 - 1,
+        -(event.clientY / window.innerHeight) * 2 + 1
+      );
+      raycaster.setFromCamera(mouse, camera);
+
+      const intersects = raycaster.intersectObject(screenMesh);
+      if (intersects.length > 0) {
+        toggleScreen();
+      }
+    }
+
+    function toggleScreen() {
+      screenOn = !screenOn;
+      const ui = document.getElementById('screenUI');
+      
+      if (screenOn) {
+        // Turn on screen
+        screenMesh.material.emissive.setHex(0x00ffcc);
+        ui.style.display = 'block';
+      } else {
+        // Turn off screen
+        screenMesh.material.emissive.setHex(0x000000);
+        ui.style.display = 'none';
+      }
+    }
+
+    function onWindowResize() {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    }
+
+    function animate() {
+      requestAnimationFrame(animate);
+      controls.update();
+      renderer.render(scene, camera);
+    }
+  </script>
+</body>
+</html>

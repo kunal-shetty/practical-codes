@@ -1,0 +1,24 @@
+Q1
+
+DECLARE
+dno INT := &dno;
+BEGIN
+UPDATE Employees SET salary += 500 WHERE deptno=dno;
+IF SQL%FOUND THEN
+dbms_output.put_line('Number of rows updated '||SQL%ROWCOUNT);
+ELSE
+dbms_output.put_line('No rows updated');
+END IF;
+END;
+/
+
+Q2
+
+DECLARE
+CURSOR c IS SELECT*FROM Employees;
+BEGIN
+FOR e IN c LOOP
+dbms_output.put_line(e.emp_name||' '||e.hiredate);
+END LOOP;
+END;
+/

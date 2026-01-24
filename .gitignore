@@ -1,0 +1,36 @@
+# Executables and Object Files
+*.exe
+*.o
+*.obj
+*.dll
+
+# Java
+*.class
+*.jar
+*.war
+
+# Python
+__pycache__/
+*.py[cod]
+*.venv
+.venv/
+venv/
+ENV/
+
+# IDE and System Files
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# C/C++
+*.out
+*.a

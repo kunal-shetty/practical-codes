@@ -1,0 +1,85 @@
+PRACTICAL 2
+1)write a pl/sql program to display the sum of first 10 integers.
+
+declare
+i int; 
+s int;
+begin
+s:=0;
+for i in 1..10 loop
+s:=s+i;
+end loop; 
+dbms_output.put_line('Sum = '||s);
+end;
+/
+
+2)write a pl/sql program to calculate the area of a circle and insert the area and radius in a table aoc (sno, radius, area) till radius is less than 10.
+
+declare
+sno int:=1; 
+rad int:=1; 
+area float;
+begin
+while rad<10 loop
+area := 3.14*rad*rad;
+insert into aoc values(sno, rad, area);
+sno:=sno+1;
+rad:=rad+1;
+end loop;
+end;
+/
+
+3)write a plsql block to find the factorial of a number.
+
+declare
+n1 int:=13;
+factorial int:=1; 
+begin
+while n1>0 loop
+factorial:=factorial*n1;
+n1:=n1-1;
+end loop;
+dbms_output.put_line('Factorial : '||factorial);
+end;
+/
+
+4)write a plsql block to print fibonacci series up to 10.
+
+declare
+a int:=0;
+b int:=1;
+c int;
+begin
+dbms_output.put_line('Fibonacci Series');
+dbms_output.put_line(a);
+dbms_output.put_line(b);
+while a+b<10 loop
+ c:=b;
+ b:=a+b;
+ dbms_output.put_line(b);
+ a:=c;
+end loop;
+end;
+/
+
+5)create a plsql block that has four sections. each section should output a statement. use lables and the goto command to output the section message in the following order:
+section 3
+section 2
+section 1
+section 4
+
+begin
+goto s3;
+<<s1>>
+dbms_output.put_line('Section 1');
+goto s4;
+<<s2>>
+dbms_output.put_line('Section 2');
+goto s1;
+<<s3>>
+dbms_output.put_line('Section 3');
+goto s2;
+<<s4>>
+dbms_output.put_line('Section 4');
+end;
+/

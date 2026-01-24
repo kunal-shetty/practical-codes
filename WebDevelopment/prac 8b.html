@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Sum Of Digits</title>
+<body bgcolor="#FFAD99">
+<script>
+var num=parseInt(prompt("Enter the number"," "));
+var sum=0,rem;
+while(num>0)
+{
+rem=num%10;
+num=parseInt(num/10);
+sum+=rem;
+}
+document.write(`<h2>Sum of the digits of the number is ${sum}</h2>`);
+</script>
+</head>
+</html>

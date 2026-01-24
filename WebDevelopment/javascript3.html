@@ -1,0 +1,28 @@
+<script>
+function calculate(a,b,choice) {
+	switch(choice) {
+		case 'A':
+		document.write("Sum of the two numbers is : " + (a+b));
+		break;
+		case 'S':
+		document.write("Difference of the two numbers is : " + (a-b));
+		break;
+		case 'M':
+		document.write("Product of the two numbers is : " + (a*b));
+		break;
+		case 'D':
+		if(b != 0)
+		document.write("Division of the two numbers is : " + (a/b));
+		else
+		document.write("Division by zero is not possible");
+		break;
+		default:
+		document.write("Invalid Input");
+		break;
+	}
+}
+let a = parseInt(prompt("Enter first number"));
+let b = parseInt(prompt("Enter second number"));
+let choice = prompt("Enter operation A for Addition S for Subtraction M for Mulltiplication D for Division");
+calculate(a,b,choice.toUpperCase());
+</script>

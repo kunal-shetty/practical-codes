@@ -1,0 +1,47 @@
+Q1
+
+BEGIN
+dbms_output.put_line('Hello World');
+END;
+/
+
+Q2
+
+DECLARE
+length INT := &length;
+breadth INT := &breadth;
+BEGIN
+dbms_output.put_line('Area of Rectangle is '||(length*breadth);
+END;
+/
+
+Q3
+
+DECLARE
+a INT := &a;
+b INT := &b;
+BEGIN
+dbms_output.put_line('Sum of numbers is '||(a+b));
+END;
+/
+
+Q4
+
+DECLARE
+emp_count INT;
+BEGIN
+SELECT COUNT(*) INTO emp_count FROM Employees;
+dbms_output.put_line('Count of Employees is '||emp_count);
+END;
+/
+
+Q5
+
+DECLARE
+name VARCHAR(20);
+job_title VARCHAR(25);
+BEGIN
+SELECT emp_name, jon INTO name, job_title FROM Employees WHERE job='CLERK' AND salary=1300;
+dbms_output.put_line(name||' is the name of the employee with job '||job_title);
+END;
+/

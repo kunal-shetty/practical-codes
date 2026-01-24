@@ -1,0 +1,53 @@
+<html>
+<head>
+<style>
+* {
+	font-size : 25px;
+}
+</style>
+</head>
+<body bgcolor="pink">
+<script lang = "javascript">
+let num = new Number(54);
+document.write("Number : " + num.valueOf() + "<br>");
+
+let str = new String("Hii");
+document.write("String : " + str.toUpperCase() + "<br>");
+
+let bool = new Boolean(true);
+document.write("Boolean : " + bool.valueOf() + "<br>");
+
+let arr = new Array(1,2,3,4,5,6,7,8,9);
+document.write("Array Length : " + arr.length + "<br>");
+
+let obj = new Object( { name : "Kunal", age : 18 });
+document.write("Object Name : " + obj.name + "<br>");
+
+let func = new Function("a", "b", "return a*b; ");
+document.write("Function Output : " + func(5,4) + "<br>");
+
+let date = new Date();
+document.write("Date : " + date.toDateString() + "<br>");
+
+document.write("Square Root of 25 : " + Math.sqrt(25) + "<br>");
+document.write("Value of PI : " + Math.PI + "<br>");
+
+let regex = new RegExp("Hello", "i");
+document.write("RegExp Test : " + regex.test("Hello World") + "<br>");
+
+let set = new Set([1,2,3,4,5,6,7,8]);
+document.write("Set Size : " + set.size + "<br>");
+
+let map = new Map();
+map.set("name","Kunal");
+document.write("Map Value : " + map.get("name") + "<br>");
+
+let sym = Symbol("ID");
+document.write("Symbol : " + sym.toString() + "<br>");
+
+let big = BigInt("123456487474898563965466955565968498595496468655690584468456");
+document.write("BigInt : " + (big + 1n) + "<br>");
+
+</script>
+</body>
+</html>
