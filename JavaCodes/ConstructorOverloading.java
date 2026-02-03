@@ -5,6 +5,8 @@
 
 // when the local variable name and instantiated variable name are same, java gives priority to local variable, this is used to refer to the objects curent instance
 
+import java.util.Scanner;
+
 class Person {
 	String name;
 	int age;
@@ -38,15 +40,21 @@ class Person {
 
 public class ConstructorOverloading {
 	public static void main(String args[]){
-		Person p1 = new Person();
-		p1.show();
-		
-		Person p2 = new Person("Kunal", 18);
+                Scanner sc = new Scanner(System.in);
+                
+                String name = sc.nextLine();
+                int age = sc.nextInt();
+                
+//		Person p1 = new Person();
+//		p1.show();
+//		
+		Person p2 = new Person(name, age);
 		p2.show();
 
-		Person p3 = new Person(p2);
-		p3.show();
+//		Person p3 = new Person(p2);
+//		p3.show();
 	}
+        
 }
 
 //Hw print multiplication table using java 
