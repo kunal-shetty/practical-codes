@@ -20,11 +20,6 @@ public class BouncingBalls extends Frame implements Runnable {
         Thread t = new Thread(this);
         t.start();
 
-        addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent e) {
-                System.exit(0);
-            }
-        });
     }
 
     public void paint(Graphics g) {
